@@ -16,21 +16,23 @@ chat_bp = Blueprint(
 )
 def chat():
 
-    data = request.json
+    try:
 
-    question = data.get(
-        "question",
-        ""
-    )
+        data = request.json
 
-    if not question:
+        question = data.get(
+            "question",
+            ""
+        )
 
-        return jsonify({
-            "answer":
-            "Please provide a question."
-        })
+        if not question:
 
-    prompt = f"""
+            return jsonify({
+                "answer":
+                "Please provide a question."
+            })
+
+        prompt = f"""
 You are an AI medical assistant.
 
 Answer the following question in simple language.
@@ -41,11 +43,23 @@ Question:
 Keep answer concise and informative.
 """
 
-    response = model.generate_content(
-        prompt
-    )
+        response = model.generate_content(
+            prompt
+        )
 
-    return jsonify({
-        "answer":
-        response.text
-    })
+        return jsonify({
+            "answer":
+            response.text
+        })
+
+    except Exception as e:
+
+        print(
+            "CHAT ERROR:",
+            str(e)
+        )
+
+        return jsonify({
+            "answer":
+            f"Backend Error: {str(e)}"
+        }), 500

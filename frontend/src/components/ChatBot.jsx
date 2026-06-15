@@ -29,13 +29,17 @@ function ChatBot() {
 
       setAnswer(res.data.answer);
 
-    } catch {
+    } catch (error) {
 
-      setAnswer(
-        "Unable to process question."
-      );
+  console.error(error);
 
-    } finally {
+  setAnswer(
+    error.response?.data?.answer ||
+    error.message ||
+    "Unable to process question."
+  );
+
+} finally {
 
       setLoading(false);
 
