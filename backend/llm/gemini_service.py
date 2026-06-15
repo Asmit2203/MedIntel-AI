@@ -36,7 +36,7 @@ genai.configure(
 
 # Use a supported model
 model = genai.GenerativeModel(
-    "gemini-1.5-pro"
+    "gemini-1.5-flash"
 )
 
 # -------------------------
