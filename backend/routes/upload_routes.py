@@ -15,9 +15,9 @@ from ocr.parse_report import (
 
 from ml.predict import predict_risk
 
-from ml.explain import (
-    explain_prediction
-)
+#from ml.explain import (
+    #explain_prediction
+#)
 
 from llm.gemini_service import (
     generate_medical_summary
@@ -166,19 +166,7 @@ def upload_file():
         # SHAP
         # --------------------------
 
-        shap_data = explain_prediction(
-            features,
-            [
-                "Pregnancies",
-                "Glucose",
-                "BloodPressure",
-                "SkinThickness",
-                "Insulin",
-                "BMI",
-                "DiabetesPedigreeFunction",
-                "Age"
-            ]
-        )
+        shap_data = {}
 
         print("STEP 5: SHAP COMPLETE")
 
