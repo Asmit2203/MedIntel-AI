@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import Navbar from "../components/Navbar";
 import UploadReport from "../components/UploadReport";
-import RiskCard from "../components/Riskcard";
+import RiskCard from "../components/RiskCard";
 import SummaryCard from "../components/SummaryCard";
 import ReportTable from "../components/ReportTable";
 import TrendChart from "../components/TrendChart";
