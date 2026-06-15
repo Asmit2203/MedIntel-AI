@@ -1,0 +1,3 @@
+MedIntel AI – Intelligent Medical Report Analyzer
+
+Patients often receive blood test reports filled with medical jargon and numbers they don't understand. This system analyzes reports, identifies abnormal values, and explains them in simple language.

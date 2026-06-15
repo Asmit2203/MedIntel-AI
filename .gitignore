@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Environment Variables
+.env
+
+# Uploads
+backend/uploads/
+
+# Virtual Environment
+venv/
+.venv/
+env/
+
+# Model Files (optional)
+# models/*.pkl
+
+# Logs
+*.log
+
+# VS Code
+.vscode/
+
+# Node
+frontend/node_modules/
+
+# Build Files
+frontend/dist/
+
+# OS Files
+.DS_Store
+Thumbs.db
