@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "https://medintel-api.onrender.com",
+  baseURL: "https://medintel-ai-m7bn.onrender.com",
 });
 
 export const uploadReport = async (file) => {
