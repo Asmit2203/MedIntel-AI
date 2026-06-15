@@ -6,32 +6,58 @@ BASE_DIR = os.path.dirname(
     os.path.abspath(__file__)
 )
 
-MODEL_PATH = os.path.join(
-    BASE_DIR,
-    "..",
-    "..",
-    "Models",
-    "risk_model.pkl"
+MODEL_PATH = os.path.abspath(
+    os.path.join(
+        BASE_DIR,
+        "..",
+        "..",
+        "models",
+        "risk_model.pkl"
+    )
 )
 
-SCALER_PATH = os.path.join(
-    BASE_DIR,
-    "..",
-    "..",
-    "Models",
-    "scaler.pkl"
+SCALER_PATH = os.path.abspath(
+    os.path.join(
+        BASE_DIR,
+        "..",
+        "..",
+        "models",
+        "scaler.pkl"
+    )
 )
 
-model = joblib.load(
-    MODEL_PATH
-)
+print("MODEL PATH:", MODEL_PATH)
+print("SCALER PATH:", SCALER_PATH)
 
-scaler = joblib.load(
-    SCALER_PATH
-)
+model = None
+scaler = None
+
+
+def load_artifacts():
+
+    global model
+    global scaler
+
+    if model is None:
+
+        print("Loading Risk Model...")
+
+        model = joblib.load(
+            MODEL_PATH
+        )
+
+    if scaler is None:
+
+        print("Loading Scaler...")
+
+        scaler = joblib.load(
+            SCALER_PATH
+        )
 
 
 def predict_risk(features):
+
+    load_artifacts()
 
     feature_array = np.array(
         [features]
@@ -50,17 +76,20 @@ def predict_risk(features):
     )[0][1]
 
     risk_score = round(
-    float(probability) * 100,
-    2
-)
+        float(probability) * 100,
+        2
+    )
 
     if risk_score < 30:
+
         risk_level = "Low"
 
     elif risk_score < 70:
+
         risk_level = "Moderate"
 
     else:
+
         risk_level = "High"
 
     return {
