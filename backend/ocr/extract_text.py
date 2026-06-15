@@ -2,8 +2,22 @@ import pdfplumber
 import easyocr
 import os
 
+reader = None
 
-reader = easyocr.Reader(['en'])
+
+def get_reader():
+
+    global reader
+
+    if reader is None:
+
+        print("Loading EasyOCR...")
+
+        reader = easyocr.Reader(
+            ['en']
+        )
+
+    return reader
 
 
 def extract_text(file_path):
@@ -27,40 +41,22 @@ def extract_text(file_path):
                 )
 
                 if page_text:
+
                     text += (
                         page_text + "\n"
                     )
 
     else:
 
+        reader = get_reader()
+
         results = reader.readtext(
             file_path,
             detail=0
         )
 
-        text = "\n".join(results)
+        text = "\n".join(
+            results
+        )
 
     return text
-
-def build_parameter_list(
-    report
-):
-
-    result = []
-
-    for key, value in report.items():
-
-        result.append({
-
-            "name": key,
-
-            "value": value,
-
-            "status":
-            parameter_status(
-                key,
-                value
-            )
-        })
-
-    return result
